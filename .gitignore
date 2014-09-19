@@ -16,3 +16,5 @@ hs_err_pid*
 ._*
 bin/
 doc/
+
+examples/
