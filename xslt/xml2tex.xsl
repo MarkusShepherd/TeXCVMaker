@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" >
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:my="http://www.schepke.info/my">
 
-    <xsl:output method="text" encoding="utf-8"/>
+<xsl:output method="text" encoding="utf-8"/>
 
-    <xsl:param name="cv-name" select="cv/settings/name/normalize-space()" as="xs:string"/>
-    <xsl:param name="cv-address" select="cv/settings/address/normalize-space()" as="xs:string?"/>
-    <xsl:param name="cv-phone" select="cv/settings/phone/normalize-space()" as="xs:string?"/>
-    <xsl:param name="cv-email" select="cv/settings/email/normalize-space()" as="xs:string?"/>
-    <xsl:param name="cv-nationality" select="cv/settings/nationality/normalize-space()" as="xs:string?"/>
-    <xsl:param name="cv-space-before" select="cv/settings/property[@key eq 'space-before']/normalize-space()" as="xs:string?"/>
-    <xsl:param name="cv-tab-left" select="cv/settings/property[@key eq 'tab-left']/normalize-space()" as="xs:string?"/>
-    <xsl:param name="cv-tab-right" select="cv/settings/property[@key eq 'tab-right']/normalize-space()" as="xs:string?"/>
+<xsl:param name="cv-name" select="cv/settings/name/normalize-space()" as="xs:string"/>
+<xsl:param name="cv-address" select="cv/settings/address/normalize-space()" as="xs:string?"/>
+<xsl:param name="cv-phone" select="cv/settings/phone/normalize-space()" as="xs:string?"/>
+<xsl:param name="cv-email" select="cv/settings/email/normalize-space()" as="xs:string?"/>
+<xsl:param name="cv-nationality" select="cv/settings/nationality/normalize-space()" as="xs:string?"/>
+<xsl:param name="cv-space-before" select="cv/settings/property[@key eq 'space-before']/normalize-space()" as="xs:string?"/>
+<xsl:param name="cv-tab-left" select="cv/settings/property[@key eq 'tab-left']/normalize-space()" as="xs:string?"/>
+<xsl:param name="cv-tab-right" select="cv/settings/property[@key eq 'tab-right']/normalize-space()" as="xs:string?"/>
 
 <xsl:template match="cv" as="text()*">
 \documentclass[10pt, a4paper, onecolumn, oneside]{scrartcl}
@@ -62,13 +62,13 @@
 
 <xsl:template match="section" as="text()*">
 \vspace{<xsl:value-of select="$cv-space-before"/>}\textbf{\textit{<xsl:value-of select="title/normalize-space()"/>}}
-    
+
 \begin{tabular}{p{<xsl:value-of select="$cv-tab-left"/>\textwidth}p{<xsl:value-of select="$cv-tab-right"/>\textwidth}}
 
 <xsl:apply-templates select="item"/>
 
 \end{tabular}
-    
+
 </xsl:template>
 
 <xsl:template match="item" as="text()*">
@@ -82,7 +82,7 @@
 </xsl:template>
 
 <xsl:template match="text()" as="text()">
-    <xsl:value-of select="normalize-space()"/>
+    <xsl:value-of select="my:escape-tex(replace(., '\s+', ' '))"/>
 </xsl:template>
 
 <xsl:template match="strong" as="text()*">\textbf{<xsl:apply-templates/>}</xsl:template>
@@ -99,5 +99,13 @@
         </xsl:if>
     </xsl:for-each>
 </xsl:template>
+
+<xsl:function name="my:escape-tex" as="xs:string*">
+    <xsl:param name="input" as="xs:string*"/>
+
+    <xsl:for-each select="$input">
+        <xsl:sequence select="replace(replace(replace(replace(., '([#$%&amp;\\^_{}~])', '\\$1'), '\\\\', '\\textbackslash{}'), '\\\^', '\\^{}'), '\\~', '\\~{}')"/>
+    </xsl:for-each>
+</xsl:function>
 
 </xsl:stylesheet>
