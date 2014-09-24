@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<cv>
+  <settings>
+    <name>John Doe</name>
+    <address>701 First Avenue, Sunnyvale, CA</address>
+    <phone>12345 678 90</phone>
+    <email>john.doe@example.com</email>
+    <nationality>Fidji</nationality>
+    <property key="space-before">1cm</property>
+    <property key="tab-left">.175</property>
+    <property key="tab-right">.8</property>
+  </settings>
+  <section>
+    <title>Education</title>
+    <item>
+      <label>2013--2014</label>
+      <content>
+        <strong>University of Cambridge</strong>: MSc in Awesomeness<br/>
+        Description of <emph>content</emph>
+        <list>
+          <item>Skill 1</item>
+          <item>Skill 2</item>
+          <item>Skill 3</item>
+        </list>
+      </content>
+    </item>
+    <item>
+      <label>2010--2013</label>
+      <content>
+        <strong>University of Oxford</strong>: BSc in Understatement<br/>
+        <list>
+          <item>Skill 1</item>
+          <item>Skill 2</item>
+          <item>Skill 3</item>
+        </list>
+      </content>
+    </item>
+  </section>
+  <section>
+    <title>Professional Experience</title>
+    <item>
+      <label>2014--present</label>
+      <content>
+        <strong>Yahoo!</strong>, Sunnyvale: <strong>Software Developer</strong><br/>
+        <list>
+          <item>Skill 1</item>
+          <item>Skill 2</item>
+          <item>Skill 3</item>
+        </list>
+      </content>
+    </item>
+    <item>
+      <label>Summer 2012</label>
+      <content>
+        <strong>Bold</strong>: Text, <emph>italic</emph><br/>
+        More text<br/>
+        <list>
+          <item>Skill 1</item>
+          <item>Skill 2</item>
+        </list>
+      </content>
+    </item>
+  </section>
+</cv>
