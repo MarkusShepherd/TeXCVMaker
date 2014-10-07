@@ -83,7 +83,7 @@
 </xsl:template>
 
 <xsl:template match="section" as="text()*">
-\vspace{<xsl:value-of select="$cv-space-before"/>}\textbf{\textit{<xsl:value-of select="title/normalize-space()"/>}}
+\vspace{<xsl:value-of select="$cv-space-before"/>}\textbf{\textit{<xsl:apply-templates select="title/text()"/>}}
 
 \begin{tabular}{p{<xsl:value-of select="$cv-tab-left"/>\textwidth}p{<xsl:value-of select="$cv-tab-right"/>\textwidth}}
 
