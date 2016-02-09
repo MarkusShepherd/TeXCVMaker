@@ -18,3 +18,7 @@ bin/
 doc/
 
 examples/
+
+*.aux
+*.out
+*.log
