@@ -112,9 +112,11 @@
 
 <xsl:template match="emph" as="text()+">\textit{<xsl:apply-templates/>}</xsl:template>
 
+<xsl:template match="a" as="text()+">\href{<xsl:value-of select="@href"/>}{<xsl:apply-templates/>}</xsl:template>
+
 <xsl:template match="latex" as="text()"><xsl:value-of select="."/></xsl:template>
 
-<xsl:template match="address" as="text()"><xsl:value-of select="my:address(normalize-space())"/></xsl:template>
+<xsl:template match="address" as="text()"><xsl:value-of select="my:address(my:escape-tex(normalize-space()))"/></xsl:template>
 
 <xsl:template match="email" as="text()"><xsl:value-of select="my:email(normalize-space())"/></xsl:template>
 
